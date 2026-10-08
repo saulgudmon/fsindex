@@ -1,0 +1,7 @@
+roots = [{ path = "~/Documents", label = "Documents" }]
+
+[exclusions]
+use_defaults = true
+names = []
+paths = []
+patterns = []

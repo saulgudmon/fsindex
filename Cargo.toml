@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = ["crates/fsindex-core", "apps/fsindex-desktop"]
+default-members = ["apps/fsindex-desktop"]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/saulgudmon/fsindex"
+rust-version = "1.95"
+
+[workspace.dependencies]
+fsindex-core = { path = "crates/fsindex-core", version = "0.2.0" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+walkdir = "2"
+notify = "6"
+rustc-hash = "2"
+parking_lot = "0.12"
+thiserror = "2"
+anyhow = "1"
+dirs = "5"
+libc = "0.2"
+regex = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+clap = { version = "4", features = ["derive", "env"] }
+signal-hook = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+
+# Interactive filename queries must be optimized even in the local debug app.
+[profile.dev.package.fsindex-core]
+opt-level = 3
